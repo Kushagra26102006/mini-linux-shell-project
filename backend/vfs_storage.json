@@ -39,6 +39,11 @@
               "name": "notes.txt",
               "type": "file",
               "content": "This is a test note"
+            },
+            "kus": {
+              "name": "kus",
+              "type": "dir",
+              "children": {}
             }
           }
         }
