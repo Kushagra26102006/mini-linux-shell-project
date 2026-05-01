@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Dark Mode (Terminal Hacker) ── */
+  --color-terminal-bg: #0d0d0d;
+  --color-terminal-text: #00ff41;
+  --color-terminal-cyan: #00f3ff;
+  --color-terminal-cursor: #00ff41;
+  --color-terminal-red: #ef4444;
+  --color-terminal-yellow: #eab308;
+  --color-terminal-blue: #3b82f6;
+
+  /* ── Light Mode SaaS Design System ── */
+  --color-saas-bg: #f8fafc;
+  --color-saas-panel: #ffffff;
+  --color-saas-border: #e2e8f0;
+  --color-saas-border-hover: #cbd5e1;
+  --color-saas-primary: #2563eb;
+  --color-saas-primary-hover: #1d4ed8;
+  --color-saas-primary-light: #eff6ff;
+  --color-saas-secondary: #7c3aed;
+  --color-saas-secondary-light: #f5f3ff;
+  --color-saas-success: #16a34a;
+  --color-saas-success-light: #f0fdf4;
+  --color-saas-error: #ef4444;
+  --color-saas-error-light: #fef2f2;
+  --color-saas-text-primary: #0f172a;
+  --color-saas-text-secondary: #64748b;
+  --color-saas-text-muted: #94a3b8;
+  --color-saas-surface: #f1f5f9;
+
+  /* ── Animations ── */
+  --animate-blink: blink 1s step-end infinite;
+  --animate-scanline: scanline 10s linear infinite;
+  --animate-shimmer: shimmer 1.5s ease-in-out infinite;
+  --animate-fade-in: fadeIn 0.2s ease-out;
+
+  @keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  @keyframes scanline {
+    0%   { bottom: 100%; }
+    80%  { bottom: 100%; }
+    100% { bottom: -100px; }
+  }
+  @keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { text-shadow: 0 0 5px rgba(0,255,65,0.2); }
+    50%       { text-shadow: 0 0 15px rgba(0,255,65,0.6); }
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+@layer base {
+  body {
+    @apply m-0 p-0 overflow-hidden;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; }
+}
+
+/* ══════════════════════════════════════════════
+   LIGHT MODE SCROLLBARS
+══════════════════════════════════════════════ */
+.saas-scroll::-webkit-scrollbar { width: 5px; height: 5px; }
+.saas-scroll::-webkit-scrollbar-track { background: transparent; }
+.saas-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
+.saas-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ══════════════════════════════════════════════
+   DARK MODE SCROLLBARS
+══════════════════════════════════════════════ */
+.dark-scroll::-webkit-scrollbar { width: 4px; }
+.dark-scroll::-webkit-scrollbar-track { background: transparent; }
+.dark-scroll::-webkit-scrollbar-thumb { background: rgba(0,243,255,0.15); border-radius: 99px; }
+.dark-scroll::-webkit-scrollbar-thumb:hover { background: rgba(0,243,255,0.35); }
+
+/* ══════════════════════════════════════════════
+   GLASSMORPHISM
+══════════════════════════════════════════════ */
+.glass-light {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.95);
+}
+.glass-panel {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ══════════════════════════════════════════════
+   DARK CRT / CYBER EFFECTS
+══════════════════════════════════════════════ */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(0,243,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,243,255,0.03) 1px, transparent 1px);
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 1;
+}
+.crt-overlay {
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: linear-gradient(
+    rgba(18,16,16,0) 50%,
+    rgba(0,0,0,0.15) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255,0,0,0.02),
+    rgba(0,255,0,0.01),
+    rgba(0,0,255,0.02)
+  );
+  z-index: 999;
+  background-size: 100% 3px, 4px 100%;
+  pointer-events: none;
+}
+.scanline {
+  width: 100%; height: 100px; z-index: 998;
+  background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,243,255,0.05) 10%, rgba(0,0,0,0) 100%);
+  opacity: 0.1; position: absolute; bottom: 100%;
+  animation: scanline 8s linear infinite;
+}
+
+/* ══════════════════════════════════════════════
+   SHIMMER LOADING
+══════════════════════════════════════════════ */
+.shimmer {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e8edf2 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════════
+   UTILITIES
+══════════════════════════════════════════════ */
+.animate-fade-in   { animation: fadeIn 0.2s ease-out; }
+.animate-slide-down { animation: slideDown 0.15s ease-out; }
+
+.focus-ring:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+/* JetBrains Mono for terminal text */
+.font-terminal { font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; }
+
+/* Premium saas shadow layers */
+.shadow-saas-sm  { box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.shadow-saas     { box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04); }
+.shadow-saas-md  { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.04); }
+.shadow-saas-lg  { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04); }
+.shadow-saas-xl  { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.03); }
+
+/* Input field transition */
+input, textarea {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}

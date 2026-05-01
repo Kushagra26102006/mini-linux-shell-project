@@ -1,0 +1,59 @@
+{
+  "name": "/",
+  "type": "dir",
+  "children": {
+    "home": {
+      "name": "home",
+      "type": "dir",
+      "children": {
+        "user": {
+          "name": "user",
+          "type": "dir",
+          "children": {
+            "6": {
+              "name": "6",
+              "type": "file",
+              "content": ""
+            },
+            "stream.txt": {
+              "name": "stream.txt",
+              "type": "file",
+              "content": "line 1\\nline 2\\nline 3"
+            },
+            "k": {
+              "name": "k",
+              "type": "file",
+              "content": "kello"
+            },
+            "kkk": {
+              "name": "kkk",
+              "type": "dir",
+              "children": {}
+            },
+            "f1": {
+              "name": "f1",
+              "type": "file",
+              "content": ""
+            },
+            "notes.txt": {
+              "name": "notes.txt",
+              "type": "file",
+              "content": "This is a test note"
+            }
+          }
+        }
+      }
+    },
+    "bin": {
+      "name": "bin",
+      "type": "dir",
+      "children": {
+        "git": {
+          "name": "git",
+          "type": "file",
+          "content": "// Binary for git\nconsole.log(\"Running git...\");"
+        }
+      }
+    }
+  }
+}
